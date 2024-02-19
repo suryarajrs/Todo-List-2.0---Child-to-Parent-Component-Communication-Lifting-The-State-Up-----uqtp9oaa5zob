@@ -5,6 +5,12 @@ import Header from './Header';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../styles/App.css';
 const App = () => {
+  
+  const [active ,setActive]= useState("INBOX")
+
+  function change(change){
+    setActive(change)
+  }
 
 
   return (
@@ -12,10 +18,10 @@ const App = () => {
     <Header />
       <div className='row'>
         <div className='col-md-2'>
-          <SideNav change={}/>
+          <SideNav change={change}/>
         </div>
         <div className='col-md-10'>
-          <MainSection active = {}/>
+          <MainSection active = {active}/>
         </div>
       </div>
     </div>
