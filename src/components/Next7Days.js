@@ -8,7 +8,6 @@ const Next7Days = (props) => {
 
   const nseven = props.list.filter((item) => {
     const d = new Date(item.date);
-    console.log(d,"ddddd");
     return d <= date || d <= nextWeek && d >= date;
   });
   console.log(nseven)
@@ -16,7 +15,7 @@ const Next7Days = (props) => {
 
   return (
     <div id="next-list">
-      <ListRender list={props.list}/>
+      <ListRender list={nseven}/>
     </div>
   );
 };
