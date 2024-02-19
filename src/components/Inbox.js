@@ -1,46 +1,43 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 const Inbox = (props) => {
- 
-  const [newTask, setTask] = useState(false);
- 
-  const [ele, setele] = useState(null);
-  const [added, setadded] =useState(4);
-  const text = useRef(null);
-  const ddate = useRef(null);
-  function updateText(e){
-    e.preventDefault();
-    setele({number: added, title: text.current.value, date: (new Date(ddate.current.value)).toLocaleDateString("en-US")})
-}
 
-useEffect(()=>{
-    if (ele) {
-        props.append(ele);
-    }
-},[ele])
   
+
+  const [newTask , setnewTask]=useState(false)
+  const ref = useRef();
+  const ref2 = useRef();
+
+  const handleAddClick = (e)=>{
+    e.preventDefault();
+
+    props.append({title:ref.current.value, date:(new Date(ref2.current.value)).toLocaleDateString("en-US")})
+
+  }
+
+ 
+
   return (
-    
     <div>
       <h3>Inbox</h3>
       {!newTask && (
-        <button className="new" onClick={()=>{setTask(true)}} id='add-new'>
+        <button className="new" onClick={()=>{setnewTask(true)}} id='add-new'>
           +Add New
         </button>
       )}
       {newTask && (
         <form className="newtask-box">
-          <input type="text" id="title" ref={text}></input>
+          <input type="text" id="title" ref={ref}></input>
           <div className="buttons">
-            <button className="new" id="add-list" onClick={(e)=>{updateText(e)}}>
+            <button className="new" id="add-list" onClick={handleAddClick}>
               Add Task
             </button>
-            <button className="new" onClick={()=>{setTask(false)}}>
+            <button className="new" onClick={()=>{setnewTask(false)}}>
               Cancel
             </button>
             <input
               type="date"
-              ref={ddate}
+              ref={ref2}
               defaultValue="2022-09-27"
               id="date"
             ></input>
